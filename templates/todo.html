@@ -1,0 +1,27 @@
+<html>
+<head>
+<style>
+   body {margin-left:30px}
+</style>
+
+</head>
+<body>
+    <h1>HEY welcome to my todo web app via html template.</h1>
+
+    <ul>
+       {% for item in items %}
+         <li>{{item.content}}
+            <form style="display: inline" action="/deletetodo/{{item.id}}" method="POST">  {% csrf_token %} 
+                
+                <input type="submit" value="delete"/>   
+         </li>
+       {% endfor  %}
+    </ul>
+    <!-- // this csrf is very important from security point of view without this POST wont be executed. -->
+<form action="/addtodo/" method="POST">  {% csrf_token %} 
+    <input type="text" name="content"/>
+    <input type="submit" value="add"/>
+</form>
+</body>
+
+</html>
